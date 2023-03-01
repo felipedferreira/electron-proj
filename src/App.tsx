@@ -10,13 +10,11 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+          Hot module reload is working.
+        </a>
+        <a className="App-link" href="https://reactjs.org" target="_self" rel="noopener noreferrer">
+          target=self
         </a>
       </header>
     </div>
