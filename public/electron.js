@@ -1,5 +1,5 @@
 const path = require('path');
-const { app, shell, BrowserWindow } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
 
 function createWindow() {
@@ -21,13 +21,32 @@ function createWindow() {
     mainWindow.webContents.openDevTools({ mode: 'detach' });
   }
 
+  bindWillNavigate(mainWindow);
 
-  mainWindow.webContents.on('will-navigate', (event, url) => {
-    console.log(url);
-    event.preventDefault(); // Prevent default navigation behavior
-    shell.openExternal(url); // Open link in default browser
+}
+
+function bindWillNavigate(windowRef) 
+{
+  if(!windowRef instanceof BrowserWindow)
+  {
+    throw Error('invalid argument exception');
+  }
+  windowRef.webContents.on('will-navigate', (event, url) => {
+    if(url.startsWith('https://aet')) 
+    {
+      // Prevent default navigation behavior
+      event.preventDefault()
+      const newWindowRef = new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+          nodeIntegration: true,
+        },
+      });
+      bindWillNavigate(newWindowRef);
+      newWindowRef.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+    }
   });
-
 }
 
 // This method will be called when Electron has finished

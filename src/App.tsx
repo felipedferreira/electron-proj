@@ -7,14 +7,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Hot module reload is working.
+        <a className="App-link" href="https://aet/Document/someid" target="_self" rel="noopener noreferrer">
+          target=self Special Link
         </a>
-        <a className="App-link" href="https://reactjs.org" target="_self" rel="noopener noreferrer">
-          target=self
+        <a className="App-link" href="https://www.google.com" target="_self" rel="noopener noreferrer">
+          Google Link
         </a>
       </header>
     </div>
